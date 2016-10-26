@@ -1,2 +1,2 @@
-import { loadExample } from './modules/visualizations/example';
-loadExample();
+import { loadExample } from './modules/utilities/geocode';
+loadGeocode();
