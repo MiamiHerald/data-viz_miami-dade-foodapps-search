@@ -1,1 +1,72 @@
-{"type": "FeatureCollection", "features": [{"type":"Feature","geometry":{"type":"MultiPolygon","coordinates":[[[[-80.120373,25.813491],[-80.133505,25.813568],[-80.144062,25.809627],[-80.148439,25.802441],[-80.14226,25.774001],[-80.136423,25.766658],[-80.130329,25.764339],[-80.12578,25.788454],[-80.12063,25.813414],[-80.120373,25.813491]]]]},"properties":{"cartodb_id":1,"description":null,"name":null}},{"type":"Feature","geometry":{"type":"MultiPolygon","coordinates":[[[[-80.185089,25.787681],[-80.204487,25.79],[-80.206032,25.840222],[-80.174789,25.84084],[-80.177536,25.823844],[-80.185089,25.787681]]]]},"properties":{"cartodb_id":2,"description":null,"name":null}},{"type":"Feature","geometry":{"type":"MultiPolygon","coordinates":[[[[-80.249462,25.690419],[-80.285339,25.689491],[-80.287743,25.763489],[-80.214615,25.765885],[-80.210838,25.740993],[-80.249977,25.71393],[-80.243111,25.705269],[-80.249462,25.690419]]]]},"properties":{"cartodb_id":3,"description":null,"name":null}},{"type":"Feature","geometry":{"type":"MultiPolygon","coordinates":[[[[-80.166035,25.984897],[-80.117798,25.986595],[-80.119686,25.930568],[-80.16243,25.9264],[-80.166035,25.946314],[-80.166035,25.984897]]]]},"properties":{"cartodb_id":5,"description":null,"name":null}}]}
+{
+    "type": "FeatureCollection",
+    "features": [{
+        "type": "Feature",
+        "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
+                [
+                    [
+                        [-80.185089, 25.787681],
+                        [-80.204487, 25.79],
+                        [-80.206032, 25.840222],
+                        [-80.174789, 25.84084],
+                        [-80.177536, 25.823844],
+                        [-80.185089, 25.787681]
+                    ]
+                ]
+            ]
+        },
+        "properties": {
+            "cartodb_id": 2,
+            "description": null,
+            "name": null
+        }
+    }, {
+        "type": "Feature",
+        "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
+                [
+                    [
+                        [-80.249462, 25.690419],
+                        [-80.285339, 25.689491],
+                        [-80.287743, 25.763489],
+                        [-80.214615, 25.765885],
+                        [-80.210838, 25.740993],
+                        [-80.249977, 25.71393],
+                        [-80.243111, 25.705269],
+                        [-80.249462, 25.690419]
+                    ]
+                ]
+            ]
+        },
+        "properties": {
+            "cartodb_id": 3,
+            "description": null,
+            "name": null
+        }
+    }, {
+        "type": "Feature",
+        "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
+                [
+                    [
+                        [-80.166035, 25.984897],
+                        [-80.117798, 25.986595],
+                        [-80.119686, 25.930568],
+                        [-80.16243, 25.9264],
+                        [-80.166035, 25.946314],
+                        [-80.166035, 25.984897]
+                    ]
+                ]
+            ]
+        },
+        "properties": {
+            "cartodb_id": 5,
+            "description": null,
+            "name": null
+        }
+    }]
+}
