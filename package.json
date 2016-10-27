@@ -74,6 +74,7 @@
     "morgan": "1.7.0",
     "object-assign": "4.0.1",
     "open": "0.0.5",
+    "point-in-polygon": "^1.0.1",
     "pretty-hrtime": "1.0.2",
     "pym.js": "^1.1.0",
     "require-dir": "0.3.0",

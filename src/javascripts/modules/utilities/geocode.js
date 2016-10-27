@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import * as d3 from 'd3';
-import * as topojson from 'topojson';
+import inside from 'point-in-polygon';
 import * as pym from 'pym.js'
 
 class GeoSearch {
@@ -53,44 +53,48 @@ class GeoSearch {
     if (error) throw error;
 
     deliveryDudesData.features.forEach(v => {
-      // check if within latitude and longitude
-      if ((this.coordinates[0] >= d3.geoBounds(v)[0][0] && this.coordinates[0] <= d3.geoBounds(v)[1][0]) && (this.coordinates[1] >= d3.geoBounds(v)[0][1] && this.coordinates[0] <= d3.geoBounds(v)[1][1])) {
-        console.log(this.coordinates, d3.geoBounds(v));
+      if (inside(this.coordinates, v.geometry.coordinates[0][0])) {
+        console.log(this.coordinates);
         $(`#js-deliveries`).append(`<li>Delivery Dudes</li>`);
       }
     });
     biteSquadData.features.forEach(v => {
-      // check if within latitude and longitude
-      if ((this.coordinates[0] >= d3.geoBounds(v)[0][0] && this.coordinates[0] <= d3.geoBounds(v)[1][0]) && (this.coordinates[1] >= d3.geoBounds(v)[0][1] && this.coordinates[0] <= d3.geoBounds(v)[1][1])) {
-        console.log(this.coordinates, d3.geoBounds(v));
-        $(`#js-deliveries`).append(`<li>Bite Squad</li>`);
-      }
+      v.geometry.coordinates.forEach(x => {
+        if (inside(this.coordinates, x[0])) {
+          console.log(this.coordinates);
+          $(`#js-deliveries`).append(`<li>Bite Squad</li>`);
+        }
+      });
     });
     grubHubData.features.forEach(v => {
-      // check if within latitude and longitude
-      if ((this.coordinates[0] >= d3.geoBounds(v)[0][0] && this.coordinates[0] <= d3.geoBounds(v)[1][0]) && (this.coordinates[1] >= d3.geoBounds(v)[0][1] && this.coordinates[0] <= d3.geoBounds(v)[1][1])) {
-        console.log(this.coordinates, d3.geoBounds(v));
-        $(`#js-deliveries`).append(`<li>Grub Hub</li>`);
-      }
-    });
-    postMatesData.features.forEach(v => {
-      // check if within latitude and longitude
-      if ((this.coordinates[0] >= d3.geoBounds(v)[0][0] && this.coordinates[0] <= d3.geoBounds(v)[1][0]) && (this.coordinates[1] >= d3.geoBounds(v)[0][1] && this.coordinates[0] <= d3.geoBounds(v)[1][1])) {
-        console.log(this.coordinates, d3.geoBounds(v));
+      if (inside(this.coordinates, v.geometry.coordinates[0][0])) {
+        console.log(this.coordinates);
         $(`#js-deliveries`).append(`<li>Post Mates</li>`);
       }
+      v.geometry.coordinates.forEach(x => {
+        if (inside(this.coordinates, x[0])) {
+          console.log(this.coordinates);
+          $(`#js-deliveries`).append(`<li>Grub Hub</li>`);
+        }
+      });
+    });
+    postMatesData.features.forEach(v => {
+      v.geometry.coordinates.forEach(x => {
+        if (inside(this.coordinates, x[0])) {
+          console.log(this.coordinates);
+          $(`#js-deliveries`).append(`<li>Post Mates</li>`);
+        }
+      })
     });
     uberEatsData.features.forEach(v => {
-      // check if within latitude and longitude
-      if ((this.coordinates[0] >= d3.geoBounds(v)[0][0] && this.coordinates[0] <= d3.geoBounds(v)[1][0]) && (this.coordinates[1] >= d3.geoBounds(v)[0][1] && this.coordinates[0] <= d3.geoBounds(v)[1][1])) {
-        console.log(this.coordinates, d3.geoBounds(v));
+      if (inside(this.coordinates, v.geometry.coordinates[0][0])) {
+        console.log(this.coordinates);
         $(`#js-deliveries`).append(`<li>Uber Eats</li>`);
       }
     });
     yelpEat24Data.features.forEach(v => {
-      // check if within latitude and longitude
-      if ((this.coordinates[0] >= d3.geoBounds(v)[0][0] && this.coordinates[0] <= d3.geoBounds(v)[1][0]) && (this.coordinates[1] >= d3.geoBounds(v)[0][1] && this.coordinates[0] <= d3.geoBounds(v)[1][1])) {
-        console.log(this.coordinates, d3.geoBounds(v));
+      if (inside(this.coordinates, v.geometry.coordinates[0][0])) {
+        console.log(this.coordinates);
         $(`#js-deliveries`).append(`<li>Yelp Eat24</li>`);
       }
     });
