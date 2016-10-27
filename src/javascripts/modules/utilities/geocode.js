@@ -14,6 +14,7 @@ class GeoSearch {
     this.yelpEat24Url = `data/yelpeat24.geo.json`;
     this.coordinates = [];
     this.autocomplete;
+    this.results = false;
   }
 
   render() {
@@ -82,22 +83,26 @@ class GeoSearch {
 
     deliveryDudesData.features.forEach(v => {
       if (inside(this.coordinates, v.geometry.coordinates[0][0])) {
+        this.results = true;
         TweenLite.to($(`#deliveryDudes`) , 0.3, {autoAlpha: 1, y: 0, display: `inline-block`});
       }
     });
     biteSquadData.features.forEach(v => {
       v.geometry.coordinates.forEach(x => {
         if (inside(this.coordinates, x[0])) {
+          this.results = true;
           TweenLite.to($(`#biteSquad`) , 0.3, {autoAlpha: 1, y: 0, display: `inline-block`});
         }
       });
     });
     grubHubData.features.forEach(v => {
       if (inside(this.coordinates, v.geometry.coordinates[0][0])) {
+        this.results = true;
         TweenLite.to($(`#grubHub`) , 0.3, {autoAlpha: 1, y: 0, display: `inline-block`});
       }
       v.geometry.coordinates.forEach(x => {
         if (inside(this.coordinates, x[0])) {
+          this.results = true;
           TweenLite.to($(`#grubHub`) , 0.3, {autoAlpha: 1, y: 0, display: `inline-block`});
         }
       });
@@ -105,20 +110,30 @@ class GeoSearch {
     postMatesData.features.forEach(v => {
       v.geometry.coordinates.forEach(x => {
         if (inside(this.coordinates, x[0])) {
+          this.results = true;
           TweenLite.to($(`#postMates`) , 0.3, {autoAlpha: 1, y: 0, display: `inline-block`});
         }
       })
     });
     uberEatsData.features.forEach(v => {
       if (inside(this.coordinates, v.geometry.coordinates[0][0])) {
+        this.results = true;
         TweenLite.to($(`#uberEats`) , 0.3, {autoAlpha: 1, y: 0, display: `inline-block`});
       }
     });
     yelpEat24Data.features.forEach(v => {
       if (inside(this.coordinates, v.geometry.coordinates[0][0])) {
+        this.results = true;
         TweenLite.to($(`#yelpEat24`) , 0.3, {autoAlpha: 1, y: 0, display: `inline-block`});
       }
     });
+
+    if (this.results) {
+      $(`#resultsHeader`).html(`Results:`).addClass(`is-active`);
+      this.results = false;
+    } else {
+      $(`#resultsHeader`).html(`No Results`).addClass(`is-active`);
+    }
   }
 }
 
