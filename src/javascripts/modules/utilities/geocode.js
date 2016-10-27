@@ -12,22 +12,33 @@ class GeoSearch {
     this.uberEatsUrl = `data/ubereats.geo.json`;
     this.yelpEat24Url = `data/yelpeat24.geo.json`;
     this.coordinates = [];
+    this.autocomplete;
   }
 
   render() {
-    this.initGeocode()
+    this.initGeolocate()
+    this.initGeocode();
   }
 
-  lookupAddress(geocoder) {
-    this.address = document.getElementById('address').value;
-    geocoder.geocode({'address': this.address}, (results, status) => {
-      if (status === 'OK') {
-        this.coordinates = [results[0].geometry.location.lng(), results[0].geometry.location.lat()];
-        this.loadData();
-      } else {
-        alert('Geocode was not successful for the following reason: ' + status);
-      }
-    });
+  initGeolocate() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        var geolocation = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        var circle = new google.maps.Circle({
+          center: geolocation,
+          radius: position.coords.accuracy
+        });
+        this.autocomplete.setBounds(circle.getBounds());
+      });
+    }
+    this.initAutocomplete();
+  }
+
+  initAutocomplete() {
+    this.autocomplete = new google.maps.places.Autocomplete((document.getElementById('autocomplete')), {types: ['geocode']});
   }
 
   initGeocode() {
@@ -35,6 +46,18 @@ class GeoSearch {
     document.getElementById('submit').addEventListener('click', () => {
       $(`#js-deliveries`).html(``);
       this.lookupAddress(this.geocoder);
+    });
+  }
+
+  lookupAddress(geocoder) {
+    this.address = document.getElementById('autocomplete').value;
+    geocoder.geocode({'address': this.address}, (results, status) => {
+      if (status === 'OK') {
+        this.coordinates = [results[0].geometry.location.lng(), results[0].geometry.location.lat()];
+        this.loadData();
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
     });
   }
 
@@ -105,4 +128,4 @@ const loadGeocode = () => {
   new GeoSearch().render();
 }
 
-export { loadGeocode};
+export { loadGeocode };

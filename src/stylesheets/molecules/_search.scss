@@ -1,0 +1,20 @@
+.search {
+  &__wrapper {
+    position: relative;
+    width: 480px;
+    margin-bottom: 1em;
+  }
+
+  &__autocomplete,
+  &__submit {
+    display: inline-block;
+  }
+
+  &__autocomplete {
+    width: 75%;
+  }
+
+  &__submit{
+    width: 24%;
+  }
+}

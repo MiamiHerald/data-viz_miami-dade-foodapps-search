@@ -12,11 +12,15 @@
       <h1>Who delivers to you...</h1>
     </div>
     <div class="row">
-      <input id="address" type="textbox" value="130 Rosales Court">
-      <input id="submit" type="button" value="Geocode">
+      <div id="locationField" class="search__wrapper">
+        <input id="autocomplete" class="search__autocomplete"type="textbox" placeholder="Enter your address">
+        <input id="submit" class="search__submit" type="button" value="Submit">
+      </div>
     </div>
     <div class="row">
-      <div id="js-deliveries">
+    </div>
+    <div class="row">
+      <div id="js-deliveries" class="results__wrapper">
 
       </div>
     </div>
