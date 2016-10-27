@@ -36,8 +36,11 @@
     display: none;
     opacity: 0;
     transform: translateY(-50%);
-    padding: 0.25em;
     width: 75px;
+    margin-right: 1em;
+    &:last-child {
+      margin-right: 0;
+    }
 
     img {
       max-width: 100%;
