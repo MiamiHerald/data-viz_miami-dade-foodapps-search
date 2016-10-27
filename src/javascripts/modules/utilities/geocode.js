@@ -18,12 +18,16 @@ class GeoSearch {
     this.el = $(`.search__outer`);
     this.elInner = $(`.search__inner`);
     this.googleEl = $(`.pac-container`);
+    this.pymChild = null;
   }
 
   render() {
     this.initGeolocate()
     this.initGeocode();
-    this.resizeContainer();
+    
+    $(window).on(`load`, () => {
+      this.pymChild = new pym.Child({ renderCallback: this.resizeContainer.bind(this) });
+    });
     $(window).on(`resize`, this.resizeContainer.bind(this));
     setInterval(() => {
       $(window).trigger('resize');
@@ -36,6 +40,10 @@ class GeoSearch {
       this.height = $(`.pac-container`).height() + this.elInner.height();
       console.log(this.height);
       this.el.height(this.height);
+
+      if (this.pymChild) {
+        this.pymChild.sendHeight();
+      }
     });
   }
 
