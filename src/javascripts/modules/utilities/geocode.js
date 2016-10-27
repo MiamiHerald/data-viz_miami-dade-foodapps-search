@@ -15,11 +15,28 @@ class GeoSearch {
     this.coordinates = [];
     this.autocomplete;
     this.results = false;
+    this.el = $(`.search__outer`);
+    this.elInner = $(`.search__inner`);
+    this.googleEl = $(`.pac-container`);
   }
 
   render() {
     this.initGeolocate()
     this.initGeocode();
+    this.resizeContainer();
+    $(window).on(`resize`, this.resizeContainer.bind(this));
+    setInterval(() => {
+      $(window).trigger('resize');
+    }, 100);
+  }
+
+  resizeContainer() {
+    requestAnimationFrame(() => {
+      this.width = this.el.width();
+      this.height = $(`.pac-container`).height() + this.elInner.height();
+      console.log(this.height);
+      this.el.height(this.height);
+    });
   }
 
   initGeolocate() {
@@ -51,6 +68,7 @@ class GeoSearch {
         'opacity': '0',
         'transform': 'translateY(-50%)'
       });
+      this.resizeContainer();
       this.lookupAddress(this.geocoder);
     });
     document.getElementById(`submit`).addEventListener(`click`, () => {
