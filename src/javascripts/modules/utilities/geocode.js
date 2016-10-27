@@ -39,12 +39,12 @@ class GeoSearch {
   }
 
   initAutocomplete() {
-    this.autocomplete = new google.maps.places.Autocomplete((document.getElementById('autocomplete')), {types: ['geocode']});
+    this.autocomplete = new google.maps.places.Autocomplete((document.getElementById(`autocomplete`)), {types: [`geocode`]});
   }
 
   initGeocode() {
     this.geocoder = new google.maps.Geocoder();
-    document.getElementById('submit').addEventListener('click', () => {
+    document.getElementById(`submit`).addEventListener(`click`, () => {
       $(`#js-deliveries li`).css({
         'display': 'none',
         'opacity': '0',
@@ -55,13 +55,13 @@ class GeoSearch {
   }
 
   lookupAddress(geocoder) {
-    this.address = document.getElementById('autocomplete').value;
+    this.address = document.getElementById(`autocomplete`).value;
     geocoder.geocode({'address': this.address}, (results, status) => {
       if (status === 'OK') {
         this.coordinates = [results[0].geometry.location.lng(), results[0].geometry.location.lat()];
         this.loadData();
       } else {
-        alert('Geocode was not successful for the following reason: ' + status);
+        alert(`Geocode was not successful for the following reason: ${status}`);
       }
     });
   }
@@ -82,41 +82,41 @@ class GeoSearch {
 
     deliveryDudesData.features.forEach(v => {
       if (inside(this.coordinates, v.geometry.coordinates[0][0])) {
-        TweenLite.to($('#deliveryDudes') , 0.3, {autoAlpha: 1, y: 0, display:'block'});
+        TweenLite.to($(`#deliveryDudes`) , 0.3, {autoAlpha: 1, y: 0, display: `inline-block`});
       }
     });
     biteSquadData.features.forEach(v => {
       v.geometry.coordinates.forEach(x => {
         if (inside(this.coordinates, x[0])) {
-          TweenLite.to($('#biteSquad') , 0.3, {autoAlpha: 1, y: 0, display:'block'});
+          TweenLite.to($(`#biteSquad`) , 0.3, {autoAlpha: 1, y: 0, display: `inline-block`});
         }
       });
     });
     grubHubData.features.forEach(v => {
       if (inside(this.coordinates, v.geometry.coordinates[0][0])) {
-        TweenLite.to($('#grubHub') , 0.3, {autoAlpha: 1, y: 0, display:'block'});
+        TweenLite.to($(`#grubHub`) , 0.3, {autoAlpha: 1, y: 0, display: `inline-block`});
       }
       v.geometry.coordinates.forEach(x => {
         if (inside(this.coordinates, x[0])) {
-          TweenLite.to($('#grubHub') , 0.3, {autoAlpha: 1, y: 0, display:'block'});
+          TweenLite.to($(`#grubHub`) , 0.3, {autoAlpha: 1, y: 0, display: `inline-block`});
         }
       });
     });
     postMatesData.features.forEach(v => {
       v.geometry.coordinates.forEach(x => {
         if (inside(this.coordinates, x[0])) {
-          TweenLite.to($('#postMates') , 0.3, {autoAlpha: 1, y: 0, display:'block'});
+          TweenLite.to($(`#postMates`) , 0.3, {autoAlpha: 1, y: 0, display: `inline-block`});
         }
       })
     });
     uberEatsData.features.forEach(v => {
       if (inside(this.coordinates, v.geometry.coordinates[0][0])) {
-        TweenLite.to($('#uberEats') , 0.3, {autoAlpha: 1, y: 0, display:'block'});
+        TweenLite.to($(`#uberEats`) , 0.3, {autoAlpha: 1, y: 0, display: `inline-block`});
       }
     });
     yelpEat24Data.features.forEach(v => {
       if (inside(this.coordinates, v.geometry.coordinates[0][0])) {
-        TweenLite.to($('#yelpEat24') , 0.3, {autoAlpha: 1, y: 0, display:'block'});
+        TweenLite.to($(`#yelpEat24`) , 0.3, {autoAlpha: 1, y: 0, display: `inline-block`});
       }
     });
   }
