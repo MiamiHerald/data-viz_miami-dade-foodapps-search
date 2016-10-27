@@ -45,6 +45,14 @@ class GeoSearch {
 
   initGeocode() {
     this.geocoder = new google.maps.Geocoder();
+    this.autocomplete.addListener('place_changed', () => {
+      $(`#js-deliveries li`).css({
+        'display': 'none',
+        'opacity': '0',
+        'transform': 'translateY(-50%)'
+      });
+      this.lookupAddress(this.geocoder);
+    });
     document.getElementById(`submit`).addEventListener(`click`, () => {
       $(`#js-deliveries li`).css({
         'display': 'none',
