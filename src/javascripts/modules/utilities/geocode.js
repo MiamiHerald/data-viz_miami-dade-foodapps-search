@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import * as d3 from 'd3';
+import { TweenLite } from 'gsap';
 import inside from 'point-in-polygon';
 import * as pym from 'pym.js'
 
@@ -44,7 +45,11 @@ class GeoSearch {
   initGeocode() {
     this.geocoder = new google.maps.Geocoder();
     document.getElementById('submit').addEventListener('click', () => {
-      $(`#js-deliveries`).html(``);
+      $(`#js-deliveries li`).css({
+        'display': 'none',
+        'opacity': '0',
+        'transform': 'translateY(-50%)'
+      });
       this.lookupAddress(this.geocoder);
     });
   }
@@ -77,48 +82,41 @@ class GeoSearch {
 
     deliveryDudesData.features.forEach(v => {
       if (inside(this.coordinates, v.geometry.coordinates[0][0])) {
-        console.log(this.coordinates);
-        $(`#js-deliveries`).append(`<li>Delivery Dudes</li>`);
+        TweenLite.to($('#deliveryDudes') , 0.3, {autoAlpha: 1, y: 0, display:'block'});
       }
     });
     biteSquadData.features.forEach(v => {
       v.geometry.coordinates.forEach(x => {
         if (inside(this.coordinates, x[0])) {
-          console.log(this.coordinates);
-          $(`#js-deliveries`).append(`<li>Bite Squad</li>`);
+          TweenLite.to($('#biteSquad') , 0.3, {autoAlpha: 1, y: 0, display:'block'});
         }
       });
     });
     grubHubData.features.forEach(v => {
       if (inside(this.coordinates, v.geometry.coordinates[0][0])) {
-        console.log(this.coordinates);
-        $(`#js-deliveries`).append(`<li>Post Mates</li>`);
+        TweenLite.to($('#grubHub') , 0.3, {autoAlpha: 1, y: 0, display:'block'});
       }
       v.geometry.coordinates.forEach(x => {
         if (inside(this.coordinates, x[0])) {
-          console.log(this.coordinates);
-          $(`#js-deliveries`).append(`<li>Grub Hub</li>`);
+          TweenLite.to($('#grubHub') , 0.3, {autoAlpha: 1, y: 0, display:'block'});
         }
       });
     });
     postMatesData.features.forEach(v => {
       v.geometry.coordinates.forEach(x => {
         if (inside(this.coordinates, x[0])) {
-          console.log(this.coordinates);
-          $(`#js-deliveries`).append(`<li>Post Mates</li>`);
+          TweenLite.to($('#postMates') , 0.3, {autoAlpha: 1, y: 0, display:'block'});
         }
       })
     });
     uberEatsData.features.forEach(v => {
       if (inside(this.coordinates, v.geometry.coordinates[0][0])) {
-        console.log(this.coordinates);
-        $(`#js-deliveries`).append(`<li>Uber Eats</li>`);
+        TweenLite.to($('#uberEats') , 0.3, {autoAlpha: 1, y: 0, display:'block'});
       }
     });
     yelpEat24Data.features.forEach(v => {
       if (inside(this.coordinates, v.geometry.coordinates[0][0])) {
-        console.log(this.coordinates);
-        $(`#js-deliveries`).append(`<li>Yelp Eat24</li>`);
+        TweenLite.to($('#yelpEat24') , 0.3, {autoAlpha: 1, y: 0, display:'block'});
       }
     });
   }

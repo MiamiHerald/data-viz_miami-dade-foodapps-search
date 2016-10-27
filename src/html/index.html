@@ -7,12 +7,12 @@
 {% extends 'layouts/application.html' %}
 
 {% block content %}
-  <div class="container">
+  <div class="container search__outer">
     <div class="row">
       <h1>Who delivers to you...</h1>
     </div>
     <div class="row">
-      <div id="locationField" class="search__wrapper">
+      <div id="locationField" class="search__inner">
         <input id="autocomplete" class="search__autocomplete"type="textbox" placeholder="Enter your address">
         <input id="submit" class="search__submit" type="button" value="Submit">
       </div>
@@ -20,8 +20,13 @@
     <div class="row">
     </div>
     <div class="row">
-      <div id="js-deliveries" class="results__wrapper">
-
+      <div id="js-deliveries" class="results">
+        <li id="deliveryDudes">Delivery Dudes</li>
+        <li id="biteSquad">Bite Squad</li>
+        <li id="postMates">Post Mates</li>
+        <li id="grubHub">Grub Hub</li>
+        <li id="uberEats">Uber Eats</li>
+        <li id="yelpEat24">Yelp Eat24</li>
       </div>
     </div>
   </div>
