@@ -15,11 +15,25 @@ class GeoSearch {
     this.coordinates = [];
     this.autocomplete;
     this.results = false;
+    this.el = $(`#jsSearchContainer`);
+    this.pymChild = null;
   }
 
   render() {
     this.initGeolocate()
     this.initGeocode();
+    $(window).on(`load`, () => {
+      this.pymChild = new pym.Child({ renderCallback: this.resizeContainer.bind(this) });
+    });
+    $(window).on(`resize`, this.resizeContainer.bind(this));
+  }
+
+  resizeContainer() {
+    window.requestAnimationFrame(() => {
+      if (this.pymChild) {
+        this.pymChild.sendHeight();
+      }
+    });
   }
 
   initGeolocate() {
