@@ -15,36 +15,11 @@ class GeoSearch {
     this.coordinates = [];
     this.autocomplete;
     this.results = false;
-    this.el = $(`.search__outer`);
-    this.elInner = $(`.search__inner`);
-    this.googleEl = $(`.pac-container`);
-    this.pymChild = null;
   }
 
   render() {
     this.initGeolocate()
     this.initGeocode();
-    
-    $(window).on(`load`, () => {
-      this.pymChild = new pym.Child({ renderCallback: this.resizeContainer.bind(this) });
-    });
-    $(window).on(`resize`, this.resizeContainer.bind(this));
-    setInterval(() => {
-      $(window).trigger('resize');
-    }, 100);
-  }
-
-  resizeContainer() {
-    requestAnimationFrame(() => {
-      this.width = this.el.width();
-      this.height = $(`.pac-container`).height() + this.elInner.height();
-      console.log(this.height);
-      this.el.height(this.height);
-
-      if (this.pymChild) {
-        this.pymChild.sendHeight();
-      }
-    });
   }
 
   initGeolocate() {
@@ -71,20 +46,13 @@ class GeoSearch {
   initGeocode() {
     this.geocoder = new google.maps.Geocoder();
     this.autocomplete.addListener('place_changed', () => {
-      $(`#js-deliveries li`).css({
-        'display': 'none',
-        'opacity': '0',
-        'transform': 'translateY(-50%)'
-      });
-      this.resizeContainer();
+      $(`#js-deliveries li`).removeClass(`is-active`);
+      $(`#resultsHeader`).removeClass(`is-active`);
       this.lookupAddress(this.geocoder);
     });
     document.getElementById(`submit`).addEventListener(`click`, () => {
-      $(`#js-deliveries li`).css({
-        'display': 'none',
-        'opacity': '0',
-        'transform': 'translateY(-50%)'
-      });
+      $(`#js-deliveries li`).removeClass(`is-active`);
+      $(`#resultsHeader`).removeClass(`is-active`);
       this.lookupAddress(this.geocoder);
     });
   }
@@ -118,26 +86,26 @@ class GeoSearch {
     deliveryDudesData.features.forEach(v => {
       if (inside(this.coordinates, v.geometry.coordinates[0][0])) {
         this.results = true;
-        TweenLite.to($(`#deliveryDudes`) , 0.3, {autoAlpha: 1, y: 0, display: `inline-block`});
+        $(`#deliveryDudes`).addClass(`is-active`);
       }
     });
     biteSquadData.features.forEach(v => {
       v.geometry.coordinates.forEach(x => {
         if (inside(this.coordinates, x[0])) {
           this.results = true;
-          TweenLite.to($(`#biteSquad`) , 0.3, {autoAlpha: 1, y: 0, display: `inline-block`});
+          $(`#biteSquad`).addClass(`is-active`);
         }
       });
     });
     grubHubData.features.forEach(v => {
       if (inside(this.coordinates, v.geometry.coordinates[0][0])) {
         this.results = true;
-        TweenLite.to($(`#grubHub`) , 0.3, {autoAlpha: 1, y: 0, display: `inline-block`});
+        $(`#grubHub`).addClass(`is-active`);
       }
       v.geometry.coordinates.forEach(x => {
         if (inside(this.coordinates, x[0])) {
           this.results = true;
-          TweenLite.to($(`#grubHub`) , 0.3, {autoAlpha: 1, y: 0, display: `inline-block`});
+          $(`#grubHub`).addClass(`is-active`);
         }
       });
     });
@@ -145,20 +113,20 @@ class GeoSearch {
       v.geometry.coordinates.forEach(x => {
         if (inside(this.coordinates, x[0])) {
           this.results = true;
-          TweenLite.to($(`#postMates`) , 0.3, {autoAlpha: 1, y: 0, display: `inline-block`});
+          $(`#postMates`).addClass(`is-active`);
         }
       })
     });
     uberEatsData.features.forEach(v => {
       if (inside(this.coordinates, v.geometry.coordinates[0][0])) {
         this.results = true;
-        TweenLite.to($(`#uberEats`) , 0.3, {autoAlpha: 1, y: 0, display: `inline-block`});
+        $(`#uberEats`).addClass(`is-active`);
       }
     });
     yelpEat24Data.features.forEach(v => {
       if (inside(this.coordinates, v.geometry.coordinates[0][0])) {
         this.results = true;
-        TweenLite.to($(`#yelpEat24`) , 0.3, {autoAlpha: 1, y: 0, display: `inline-block`});
+        $(`#yelpEat24`).addClass(`is-active`);
       }
     });
 

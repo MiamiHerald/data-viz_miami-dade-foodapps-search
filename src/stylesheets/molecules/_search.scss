@@ -8,8 +8,7 @@
   }
   &__inner {
     position: relative;
-    max-width: 480px;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
   }
 
   &__autocomplete,
@@ -41,18 +40,31 @@
   }
 
   li {
-    display: none;
-    opacity: 0;
-    transform: translateY(-50%);
-    width: 75px;
-    margin-right: 1em;
-    &:last-child {
-      margin-right: 0;
+    @include span-columns(6 of 12);
+    @include omega(2n);
+
+    @include media($medium-screen-up) {
+      @include omega-reset(2n);
+      @include span-columns(4 of 12);
+      @include omega(3n);
     }
+    display: inline-block;
 
     img {
-      max-width: 100%;
       vertical-align: middle;
+      max-width: 125px;
+      margin: 0 auto 1em;
+      display: block;
+      filter: grayscale(100%);
+      padding: 25px;
+      transition: filter 0.5s linear, padding 0.5s linear;
+    }
+
+    &.is-active {
+      img {
+        filter: grayscale(0%);
+        padding: 5px;
+      }
     }
   }
 }

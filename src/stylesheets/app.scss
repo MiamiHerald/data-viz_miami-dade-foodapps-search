@@ -7,6 +7,8 @@
 @import 'base/variables';
 @import 'base/typography';
 
+@import 'mixins/omega-reset';
+
 @import 'atoms/container';
 @import 'atoms/row';
 @import 'atoms/strikethrough';
