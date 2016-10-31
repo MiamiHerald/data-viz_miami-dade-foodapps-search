@@ -60,13 +60,11 @@ class GeoSearch {
   initGeocode() {
     this.geocoder = new google.maps.Geocoder();
     this.autocomplete.addListener('place_changed', () => {
-      $(`#js-deliveries li`).removeClass(`is-active`);
-      $(`#resultsHeader`).removeClass(`is-active`);
+      $(`#js-deliveries li`).removeClass();
       this.lookupAddress(this.geocoder);
     });
     document.getElementById(`submit`).addEventListener(`click`, () => {
-      $(`#js-deliveries li`).removeClass(`is-active`);
-      $(`#resultsHeader`).removeClass(`is-active`);
+      $(`#js-deliveries li`).removeClass();
       this.lookupAddress(this.geocoder);
     });
   }
@@ -97,29 +95,29 @@ class GeoSearch {
   renderData(error, deliveryDudesData, biteSquadData, grubHubData, postMatesData, uberEatsData, yelpEat24Data) {
     if (error) throw error;
 
-    deliveryDudesData.features.forEach(v => {
+    deliveryDudesData.features.some(v => {
       if (inside(this.coordinates, v.geometry.coordinates[0][0])) {
         this.results = true;
-        $(`#deliveryDudes`).addClass(`is-active`);
+        $(`#deliveryDudes`).addClass(`does-deliver`);
       }
     });
     biteSquadData.features.forEach(v => {
       v.geometry.coordinates.forEach(x => {
         if (inside(this.coordinates, x[0])) {
           this.results = true;
-          $(`#biteSquad`).addClass(`is-active`);
+          $(`#biteSquad`).addClass(`does-deliver`);
         }
       });
     });
     grubHubData.features.forEach(v => {
       if (inside(this.coordinates, v.geometry.coordinates[0][0])) {
         this.results = true;
-        $(`#grubHub`).addClass(`is-active`);
+        $(`#grubHub`).addClass(`does-deliver`);
       }
       v.geometry.coordinates.forEach(x => {
         if (inside(this.coordinates, x[0])) {
           this.results = true;
-          $(`#grubHub`).addClass(`is-active`);
+          $(`#grubHub`).addClass(`does-deliver`);
         }
       });
     });
@@ -127,29 +125,24 @@ class GeoSearch {
       v.geometry.coordinates.forEach(x => {
         if (inside(this.coordinates, x[0])) {
           this.results = true;
-          $(`#postMates`).addClass(`is-active`);
+          $(`#postMates`).addClass(`does-deliver`);
         }
       })
     });
     uberEatsData.features.forEach(v => {
       if (inside(this.coordinates, v.geometry.coordinates[0][0])) {
         this.results = true;
-        $(`#uberEats`).addClass(`is-active`);
+        $(`#uberEats`).addClass(`does-deliver`);
       }
     });
     yelpEat24Data.features.forEach(v => {
       if (inside(this.coordinates, v.geometry.coordinates[0][0])) {
         this.results = true;
-        $(`#yelpEat24`).addClass(`is-active`);
+        $(`#yelpEat24`).addClass(`does-deliver`);
       }
     });
 
-    if (this.results) {
-      $(`#resultsHeader`).html(`Results:`).addClass(`is-active`);
-      this.results = false;
-    } else {
-      $(`#resultsHeader`).html(`No Results`).addClass(`is-active`);
-    }
+    $(`li`).not(`.does-deliver`).addClass(`does-not-deliver`);
   }
 }
 
