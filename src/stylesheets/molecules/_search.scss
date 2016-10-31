@@ -31,12 +31,13 @@
 }
 
 .results {
-  h2 {
-    display: none;
-
-    &.is-active {
-      display: block;
-    }
+  &__checkbox {
+    width: 100%;
+    display: block;
+    text-align: center;
+    border-top: 1px solid $light-grey;
+    padding-top: 10px;
+    padding-bottom: 5px;
   }
 
   li {
@@ -49,14 +50,21 @@
       @include omega(3n);
     }
     display: inline-block;
+    background: $white;
+    border: solid 10px $light-grey;
+    padding: 5px;
+    margin-bottom: 2.5px;
+
+    a {
+      background: transparent;
+    }
 
     img {
-      vertical-align: middle;
-      max-width: 125px;
-      margin: 0 auto 1em;
+      vertical-align: top;
+      width: 80px;
+      margin: 0 auto 10px;
       display: block;
       filter: grayscale(100%);
-      padding: 25px;
       transition: filter 0.5s linear, padding 0.5s linear;
     }
 
