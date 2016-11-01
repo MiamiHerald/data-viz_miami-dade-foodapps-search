@@ -30,6 +30,7 @@ class GeoSearch {
 
   resizeContainer() {
     window.requestAnimationFrame(() => {
+      console.log('foo');
       if (this.pymChild) {
         this.pymChild.sendHeight();
       }
