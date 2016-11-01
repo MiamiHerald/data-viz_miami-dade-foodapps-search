@@ -71,6 +71,8 @@ class GeoSearch {
       this.resizeContainer();
     });
     $(`.pac-container`).click( () => {
+      $(`#js-deliveries li`).removeClass();
+      this.lookupAddress(this.geocoder);
       this.resizeContainer();
     });
   }
