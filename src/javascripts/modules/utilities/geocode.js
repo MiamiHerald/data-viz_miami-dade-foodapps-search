@@ -156,6 +156,8 @@ class GeoSearch {
     } else {
       $(`#jsResultsHeader`).html(`There currently aren't any of these services delivering to your area`);
     }
+
+    this.resizeContainer();
   }
 }
 
