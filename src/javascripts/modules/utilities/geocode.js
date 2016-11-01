@@ -62,10 +62,12 @@ class GeoSearch {
     this.autocomplete.addListener('place_changed', () => {
       $(`#js-deliveries li`).removeClass();
       this.lookupAddress(this.geocoder);
+      this.resizeContainer();
     });
     document.getElementById(`submit`).addEventListener(`click`, () => {
       $(`#js-deliveries li`).removeClass();
       this.lookupAddress(this.geocoder);
+      this.resizeContainer();
     });
   }
 
