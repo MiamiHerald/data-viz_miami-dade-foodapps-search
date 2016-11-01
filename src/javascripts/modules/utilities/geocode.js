@@ -20,16 +20,17 @@ class GeoSearch {
   }
 
   render() {
-    this.initGeolocate()
-    this.initGeocode();
     $(window).on(`load`, () => {
       this.pymChild = new pym.Child({ renderCallback: this.resizeContainer.bind(this) });
     });
     $(window).on(`resize`, this.resizeContainer.bind(this));
+    this.initGeolocate()
+    this.initGeocode();
   }
 
   resizeContainer() {
     window.requestAnimationFrame(() => {
+      console.log('foo');
       if (this.pymChild) {
         this.pymChild.sendHeight();
       }
