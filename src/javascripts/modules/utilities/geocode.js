@@ -70,7 +70,7 @@ class GeoSearch {
       this.lookupAddress(this.geocoder);
       this.resizeContainer();
     });
-    $(`.pac-container`).click( () => {
+    $(`.pac-container`).click(() => {
       $(`#js-deliveries li`).removeClass();
       this.lookupAddress(this.geocoder);
       this.resizeContainer();
