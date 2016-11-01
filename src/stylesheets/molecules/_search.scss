@@ -8,7 +8,7 @@
   }
   &__inner {
     position: relative;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
   }
 
   &__autocomplete,
@@ -38,6 +38,10 @@
     border-top: 1px solid $light-grey;
     padding-top: 10px;
     padding-bottom: 5px;
+  }
+
+  &__header {
+    margin-bottom: 1em;
   }
 
   li {
@@ -72,6 +76,8 @@
 
     .fa {
       display: none;
+      vertical-align: sub;
+      margin-right: 5px;
       &-check {
         color: $green;
       }
@@ -82,7 +88,7 @@
 
     &.does-deliver {
       .fa-check {
-        display: block;
+        display: inline-block;
       }
 
       img {
@@ -92,8 +98,16 @@
 
     &.does-not-deliver {
       .fa-times {
-        display: block;
+        display: inline-block;
+      }
+
+      img {
+        padding: 10px;
       }
     }
+  }
+
+  #deliveryDudes img {
+    width: 70px;
   }
 }

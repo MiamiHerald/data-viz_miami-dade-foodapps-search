@@ -143,6 +143,11 @@ class GeoSearch {
     });
 
     $(`li`).not(`.does-deliver`).addClass(`does-not-deliver`);
+    if ($('.does-deliver').length) {
+      $(`#jsResultsHeader`).html(`${$('.does-deliver').length} of 6 services are available in your area.`);
+    } else {
+      $(`#jsResultsHeader`).html(`There currently aren't any of these services delivering to your area`);
+    }
   }
 }
 
