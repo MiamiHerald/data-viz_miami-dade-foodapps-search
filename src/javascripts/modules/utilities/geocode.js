@@ -30,7 +30,6 @@ class GeoSearch {
 
   resizeContainer() {
     window.requestAnimationFrame(() => {
-      console.log('foo');
       if (this.pymChild) {
         this.pymChild.sendHeight();
       }
@@ -68,6 +67,9 @@ class GeoSearch {
     document.getElementById(`submit`).addEventListener(`click`, () => {
       $(`#js-deliveries li`).removeClass();
       this.lookupAddress(this.geocoder);
+      this.resizeContainer();
+    });
+    $(`.pac-container`).click( () => {
       this.resizeContainer();
     });
   }
